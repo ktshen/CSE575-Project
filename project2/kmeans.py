@@ -1,3 +1,16 @@
+"""
+In this part, you are required to implement the k-means algorithm and apply your implementation on the given dataset, which contains a set of 2-D points. You are required to implement two different strategies for choosing the initial cluster centers.
+
+Strategy 1: randomly pick the initial centers from the given samples.
+
+Strategy 2: pick the first center randomly; for the i-th center (i>1), choose a sample (among all possible samples) such that the average distance of this chosen one to all previous (i-1) centers is maximal.
+
+You need to test your implementation on the given data, with the number k of clusters ranging from 2-10. Plot the objective function value vs. the number of clusters k. Under each strategy, plot the objective function twice, each start from a different initialization.
+
+(Referring to the course notes:  When clustering the samples into k clusters/sets Di, with respective center/mean vectors 𝜇1, 𝜇2, … 𝜇k,  the objective function is defined as
+ΣΣ || x - 𝜇 ||^2
+"""
+
 from scipy.io import loadmat
 import numpy as np
 import argparse
@@ -123,7 +136,7 @@ if __name__ == "__main__":
         "-s",
         "--strategy",
         type=int,
-        help="strategy to be used",
+        help="strategy to be used, 1 or 2",
         required=True,
     )
     parser.add_argument(
