@@ -79,7 +79,7 @@ class KMeanClassifier:
             If that sample is already assigned as centroid, then pick the second distant sample and so on.
         """
         centroid_index = np.array([-1 for i in range(self.K)])
-        centroid_index[0] = random.randint(0, self.X.shape[0])
+        centroid_index[0] = random.randint(0, self.X.shape[0]-1)
 
         for k in range(2, self.K+1):
             init_matrix = np.repeat(self.X, k-1, axis=1).reshape(self.X.shape[0], k-1, 2)
@@ -97,6 +97,9 @@ class KMeanClassifier:
         return self.X[centroid_index.astype(int)]
 
     def classify_to_nearest_centroids(self, centroids):
+        """
+            Calculate the Euclidean distance between samples and each centroids
+        """
         m_data = self.X.shape[0]
         distance_matrix = np.zeros(shape=(m_data, self.K))
 
@@ -160,5 +163,5 @@ if __name__ == "__main__":
     img_showing_or_storing = args.img
 
     dataset = (loadmat(DATASET_FILE))["AllSamples"]
-    classifier = KMeanClassifier(dataset, iter=3000, strategy=strategy)
+    classifier = KMeanClassifier(dataset, iter=1000, strategy=strategy)
     classifier.run_and_plot(K=10, show_or_store=img_showing_or_storing)

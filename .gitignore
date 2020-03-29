@@ -1,3 +1,5 @@
 *.png
 __pycache__/
+project2/*.pdf
+project2/*.docx
 
